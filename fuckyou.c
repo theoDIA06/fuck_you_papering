@@ -45,9 +45,9 @@ DWORD WINAPI autoF5(void* lpVoid)
 
 int CALLBACK WinMain(HINSTANCE hinstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
 {
-	WndClass.lpszClassName = "win"; // CreateWindowAÀÇ Ã¹ ¹øÂ° ÀÎÀÚ¿¡¼­ Á¤ÇØÁØ ÀÌ¸§°ú °°¾Æ¾ßÇÔ.
+	WndClass.lpszClassName = "win"; // CreateWindowAì˜ ì²« ë²ˆì§¸ ì¸ìì—ì„œ ì •í•´ì¤€ ì´ë¦„ê³¼ ê°™ì•„ì•¼í•¨.
 	WndClass.hInstance = hinstance;
-	WndClass.lpfnWndProc = WndProc; // ÀÀ¿ë ÇÁ·Î±×·¥ ¸Ş½ÃÁö Å¥¿¡¼­ ²¨³»¼­ Ã³¸®ÇÏ´Â °úÁ¤À» ÇÁ·Î±×·¡¸Ó°¡ Á÷Á¢ ¸¸µé¾îÁà¾ß ÇÏ´Âµ¥ ¹Ù·Î ÀÌ·¯ÇÑ ±â´ÉÀ» ÇÏ´Â ÇÔ¼öÀÌ´Ù.
+	WndClass.lpfnWndProc = WndProc; // ì‘ìš© í”„ë¡œê·¸ë¨ ë©”ì‹œì§€ íì—ì„œ êº¼ë‚´ì„œ ì²˜ë¦¬í•˜ëŠ” ê³¼ì •ì„ í”„ë¡œê·¸ë˜ë¨¸ê°€ ì§ì ‘ ë§Œë“¤ì–´ì¤˜ì•¼ í•˜ëŠ”ë° ë°”ë¡œ ì´ëŸ¬í•œ ê¸°ëŠ¥ì„ í•˜ëŠ” í•¨ìˆ˜ì´ë‹¤.
 	WndClass.hbrBackground = (HBRUSH)GetStockObject(WHITE_BRUSH);
 	WndClass.hCursor = LoadCursor(NULL, IDC_ARROW);
 	WndClass.cbClsExtra = 0;
@@ -60,18 +60,18 @@ int CALLBACK WinMain(HINSTANCE hinstance, HINSTANCE hPrevInstance, LPSTR lpCmdLi
 	RegisterClassA(&WndClass);
 
 
-	// À©µµ¿ì¸¦ »ı¼º
+	// ìœˆë„ìš°ë¥¼ ìƒì„±
 	CreateWindowA("win", "fuck_you!", WS_VISIBLE | WS_OVERLAPPEDWINDOW | WS_BORDER, 300, 200, 400, 100, NULL, NULL, hinstance, NULL);
 
-	while (GetMessageA(&msg, 0, 0, 0)) // ¸Ş½ÃÁö¸¦ ¹İº¹ÀûÀ¸·Î ²¨³½´Ù. ÀÌ ÇÔ¼ö¸¦ ½á¾ß ¸Ş½ÃÁöÅ¥¿¡¼­ ¸Ş½ÃÁö¸¦ ²¨³¾ ¼ö°¡ ÀÖ´Ù.
+	while (GetMessageA(&msg, 0, 0, 0)) // ë©”ì‹œì§€ë¥¼ ë°˜ë³µì ìœ¼ë¡œ êº¼ë‚¸ë‹¤. ì´ í•¨ìˆ˜ë¥¼ ì¨ì•¼ ë©”ì‹œì§€íì—ì„œ ë©”ì‹œì§€ë¥¼ êº¼ë‚¼ ìˆ˜ê°€ ìˆë‹¤.
 	{
 		TranslateMessage(&msg);
-		DispatchMessageA(&msg); // ¸Ş½ÃÁö°¡ ¿Ã ¶§¸¶´Ù ²¨³»¼­ ¾Æ·¡ ¸Ş½ÃÁö Ã³¸® ÇÔ¼ö°¡ È£ÃâµÉ ¼ö ÀÖµµ·Ï Dispatch ÇØÁØ´Ù.
+		DispatchMessageA(&msg); // ë©”ì‹œì§€ê°€ ì˜¬ ë•Œë§ˆë‹¤ êº¼ë‚´ì„œ ì•„ë˜ ë©”ì‹œì§€ ì²˜ë¦¬ í•¨ìˆ˜ê°€ í˜¸ì¶œë  ìˆ˜ ìˆë„ë¡ Dispatch í•´ì¤€ë‹¤.
 	}
 	return 0;
 
 }
-LRESULT CALLBACK WndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam) // ¸Ş½ÃÁö°¡ ¿Ã ¶§¸¶´Ù ÇÔ¼öÃ³¸®ÇÒ ¼ö ÀÖ´Â ÇÔ¼ö
+LRESULT CALLBACK WndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam) // ë©”ì‹œì§€ê°€ ì˜¬ ë•Œë§ˆë‹¤ í•¨ìˆ˜ì²˜ë¦¬í•  ìˆ˜ ìˆëŠ” í•¨ìˆ˜
 {
 	if (uMsg == WM_HOTKEY)
 	{
@@ -94,8 +94,8 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam) // 
 		fuckyou = CreateThread(NULL, 0, autoF5, &fuckyoutoogle, 0, NULL);
 		RegisterHotKey(hwnd, 1, 0, VK_F1);
 		RegisterHotKey(hwnd, 0, 0, VK_F2);
-		CreateWindowA("button", "F5¿ÀÅä Å¬¸¯ ½ÃÀÛ(F1)", WS_VISIBLE | WS_CHILD, 30, 15, 200, 30, hwnd, (HMENU)start, g_inst, NULL);
-		CreateWindowA("button", "Áß´Ü(F2)", WS_VISIBLE | WS_CHILD, 250, 15, 100, 30, hwnd, (HMENU)stop, g_inst, NULL);
+		CreateWindowA("button", "ë„ë°° ì‹œì‘(F1)", WS_VISIBLE | WS_CHILD, 30, 15, 200, 30, hwnd, (HMENU)start, g_inst, NULL);
+		CreateWindowA("button", "ì¤‘ë‹¨(F2)", WS_VISIBLE | WS_CHILD, 250, 15, 100, 30, hwnd, (HMENU)stop, g_inst, NULL);
 		break;
 	case WM_COMMAND:
 		switch (LOWORD(wParam))
@@ -112,5 +112,5 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam) // 
 	default:
 		break;
 	}
-	return DefWindowProcA(hwnd, uMsg, wParam, lParam); //±âº»ÀûÀÎ ¸Ş½ÃÁö(ÃÖ´ë, ÃÖ¼ÒÈ­ µî)¸¦ À©µµ¿ì°¡ ¸ğµÎ ÇØÁÖ´Â ÇÔ¼ö
+	return DefWindowProcA(hwnd, uMsg, wParam, lParam); //ê¸°ë³¸ì ì¸ ë©”ì‹œì§€(ìµœëŒ€, ìµœì†Œí™” ë“±)ë¥¼ ìœˆë„ìš°ê°€ ëª¨ë‘ í•´ì£¼ëŠ” í•¨ìˆ˜
 }
